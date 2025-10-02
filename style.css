@@ -1,0 +1,16 @@
+/* title id */
+.title {
+    color: black;
+    font-style: normal;
+    text-align: center;
+}
+/* calendar table */
+table {
+    border: 3px solid black;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+/* table sections */
+td, th {
+    border: 1px solid black;
+}
