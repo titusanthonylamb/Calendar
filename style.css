@@ -1,16 +1,36 @@
-/* title id */
+/* title class */
 .title {
     color: black;
     font-style: normal;
     text-align: center;
 }
+/* type_button id */
+#type_button {
+    font-size: clamp(0.7rem, 2vw, 3rem); /* min, preferred, max */
+    border: 1px solid black;
+    padding: 0.5em 1em; /* top/bottom, left/right */;
+    cursor: pointer;
+}
 /* calendar table */
 table {
-    border: 3px solid black;
+    width: 95vw;
+    height: auto;
+    border: 5px solid black;
     margin: 0 auto;
-    border-collapse: collapse;
+    border-radius: 20px;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+/* table rows */
+tr {
+    height: 4vh;
 }
 /* table sections */
 td, th {
-    border: 1px solid black;
+    font-size: clamp(0.7rem, 2vw, 3rem); /* min, preferred, max */
+    font-family: 'segoe ui', 'roboto', 'helvetica neue', arial, sans-serif;
+    border: 2px solid black;
+    padding: 0.3em 0.6em; /* top/bottom, left/right */;
 }

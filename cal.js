@@ -1,13 +1,14 @@
 "use strict";
 
+// constants and variables
 const table = document.getElementById("calendar");
 let type_button = document.getElementById("type_button")
-let compact_mode = false;
+let edit_mode = true;
 
 // hide or show rows based on mode
 function switch_mode() {
-    if (compact_mode == false) {
-        compact_mode = true;
+    if (edit_mode == true) {
+        edit_mode = false;
         let has_content = false;
         for (let i = 1; i < 25; i++) {
             for (let v = 1; v < 8; v++) {
@@ -19,13 +20,13 @@ function switch_mode() {
                 table.rows[i].style.display = "none";
             }
         }
-        type_button.textContent = "Compact Mode";
+        type_button.textContent = "View Mode";
     } else {
-        compact_mode = false;
+        edit_mode = true;
         for (let i = 1; i < 25; i++) {
             table.rows[i].style.display = "";
         }
-        type_button.textContent = "Full Mode";
+        type_button.textContent = "Edit Mode";
     }
     type_button.style.fontWeight = "bold";
 }
@@ -52,3 +53,6 @@ for (let i = 0; i < 24; i++) {
         }
     }
 }
+
+// set mode to view
+switch_mode();
