@@ -9,20 +9,24 @@ let edit_mode = true;
 function switch_mode() {
     if (edit_mode == true) {
         edit_mode = false;
+        table.contentEditable = "false";
         let has_content = false;
         for (let i = 1; i < 25; i++) {
             for (let v = 1; v < 8; v++) {
-                if (table.rows[i].cells[v].textContent.trim() == "") {
+                console.log(table.rows[i].cells[v].textContent.trim());
+                if (table.rows[i].cells[v].textContent.trim() !== "") {
                     has_content = true;
                 }
             }
-            if (has_content == true) {
+            if (has_content == false) {
                 table.rows[i].style.display = "none";
             }
+            has_content = false;
         }
         type_button.textContent = "View Mode";
     } else {
         edit_mode = true;
+        table.contentEditable = "true";
         for (let i = 1; i < 25; i++) {
             table.rows[i].style.display = "";
         }
@@ -49,7 +53,17 @@ for (let i = 0; i < 24; i++) {
             newCell.style.fontWeight = "bold";
             newCell.style.textAlign = "right";
         } else {
-            newCell.textContent = ""
+            newCell.textContent = "";
+
+            // pointer leave & enter listeners
+            newCell.addEventListener('pointerenter', () => {
+                newCell.classList.add('cell-hover');
+                newCell.classList.add('cell-active');
+            });
+            newCell.addEventListener('pointerleave', () => {
+                newCell.classList.remove('cell-hover');
+                newCell.classList.remove('cell-active');
+            });
         }
     }
 }
