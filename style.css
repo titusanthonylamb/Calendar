@@ -34,12 +34,10 @@ td, th {
     border: 2px solid black;
     padding: 0.3em 0.6em; /* top/bottom, left/right */;
 }
-
 /* table cells hover */
 td.cell-hover {
     background: rgba(0,0,0,0.1);
 }
-
 /* cell content */
 .cell-content {
     display: inline-block;

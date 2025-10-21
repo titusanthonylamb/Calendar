@@ -13,10 +13,11 @@ function switch_mode() {
         let has_content = false;
         for (let i = 1; i < 25; i++) {
             for (let v = 1; v < 8; v++) {
-                console.log(table.rows[i].cells[v].textContent.trim());
+                //console.log(table.rows[i].cells[v].textContent.trim());
                 if (table.rows[i].cells[v].textContent.trim() !== "") {
                     has_content = true;
                 }
+                table.rows[i].cells[v].contentEditable = "false";
             }
             if (has_content == false) {
                 table.rows[i].style.display = "none";
@@ -26,9 +27,11 @@ function switch_mode() {
         type_button.textContent = "View Mode";
     } else {
         edit_mode = true;
-        table.contentEditable = "true";
         for (let i = 1; i < 25; i++) {
             table.rows[i].style.display = "";
+            for (let v = 1; v < 8; v++) {
+                table.rows[i].cells[v].contentEditable = "true";
+            }
         }
         type_button.textContent = "Edit Mode";
     }
