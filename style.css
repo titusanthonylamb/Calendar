@@ -4,20 +4,33 @@
     font-style: normal;
     text-align: center;
 }
+button {
+    background-color: #c0b6ff;
+}
 /* type_button id */
 #type_button {
     font-size: clamp(0.7rem, 2vw, 3rem); /* min, preferred, max */
-    border: 1px solid black;
+    border: 1px solid rgb(255, 255, 255);
     padding: 0.5em 1em; /* top/bottom, left/right */;
     cursor: pointer;
+}
+/* save_button id */
+#save_button {
+    font-size: clamp(1rem, 1.5vw, 2rem); /* min, preferred, max */
+    border: 1px solid rgb(255, 255, 255);
+    padding: 0.5em 1em; /* top/bottom, left/right */;
+    cursor: pointer;
+    align-items: center;
+    display: block;
+    margin: 20px auto;
 }
 /* calendar table */
 table {
     width: 95vw;
     height: auto;
-    border: 5px solid black;
+    border: 5px solid rgb(255, 255, 255);
+    border-radius: 5px;
     margin: 0 auto;
-    border-radius: 20px;
     border-collapse: separate;
     border-spacing: 0;
     overflow: hidden;
@@ -30,8 +43,8 @@ tr {
 /* table sections */
 td, th {
     font-size: clamp(0.7rem, 2vw, 3rem); /* min, preferred, max */
-    font-family: 'segoe ui', 'roboto', 'helvetica neue', arial, sans-serif;
-    border: 2px solid black;
+    border: 2px solid rgb(255, 255, 255);
+    background-color: #d9d0ff;
     padding: 0.3em 0.6em; /* top/bottom, left/right */;
 }
 /* table cells hover */
@@ -46,4 +59,12 @@ td.cell-hover {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+body {
+    background-color: #9fedff;
+    margin: 0;
+    padding: 20px;
+}
+* {
+    font-family: Arial, sans-serif;
 }

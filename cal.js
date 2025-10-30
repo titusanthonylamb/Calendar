@@ -5,6 +5,11 @@ const table = document.getElementById("calendar");
 let type_button = document.getElementById("type_button")
 let edit_mode = true;
 
+// save data from the clandar table to server storage
+function save_data() {
+    
+}
+
 // hide or show rows based on mode
 function switch_mode() {
     if (edit_mode == true) {
@@ -37,6 +42,9 @@ function switch_mode() {
     }
     type_button.style.fontWeight = "bold";
 }
+
+// detect when wepage is closed or refreshed to save data
+//window.addEventListener("visibilitychange", save_data);
 
 // loop through table to create rows and sections,
 // and naming row headers by time
