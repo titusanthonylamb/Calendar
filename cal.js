@@ -5,46 +5,41 @@ const table = document.getElementById("calendar");
 let type_button = document.getElementById("type_button")
 let edit_mode = true;
 
-// save data from the clandar table to server storage
-function save_data() {
-    
-}
-
 // hide or show rows based on mode
 function switch_mode() {
     if (edit_mode == true) {
         edit_mode = false;
         table.contentEditable = "false";
         let has_content = false;
+
         for (let i = 1; i < 25; i++) {
             for (let v = 1; v < 8; v++) {
-                //console.log(table.rows[i].cells[v].textContent.trim());
-                if (table.rows[i].cells[v].textContent.trim() !== "") {
+                let cell = table.rows[i].cells[v];
+                let input = cell.querySelector("input"); // get the input inside the cell
+                if (input && input.value.trim() !== "") {
                     has_content = true;
                 }
-                table.rows[i].cells[v].contentEditable = "false";
+                if (input) input.readOnly = true; // make input not editable
             }
-            if (has_content == false) {
-                table.rows[i].style.display = "none";
-            }
+            table.rows[i].style.display = has_content ? "" : "none";
             has_content = false;
         }
+
         type_button.textContent = "View Mode";
     } else {
         edit_mode = true;
         for (let i = 1; i < 25; i++) {
             table.rows[i].style.display = "";
             for (let v = 1; v < 8; v++) {
-                table.rows[i].cells[v].contentEditable = "true";
+                let cell = table.rows[i].cells[v];
+                let input = cell.querySelector("input");
+                if (input) input.readOnly = false;
             }
         }
         type_button.textContent = "Edit Mode";
     }
     type_button.style.fontWeight = "bold";
 }
-
-// detect when wepage is closed or refreshed to save data
-//window.addEventListener("visibilitychange", save_data);
 
 // loop through table to create rows and sections,
 // and naming row headers by time
@@ -57,14 +52,26 @@ for (let i = 0; i < 24; i++) {
         if (v == 0) {
             newCell.appendChild(rowHead);
 
-            let displayHour = i % 12 == 0 ? 12 : i % 12;
+            let displayHour = i % 12 === 0 ? 12 : i % 12;
             let period = i < 12 ? "AM" : "PM";
 
-            newCell.textContent = `${displayHour}:00 ${period}`
+            newCell.textContent = `${displayHour}:00 ${period}`;
             newCell.style.fontWeight = "bold";
             newCell.style.textAlign = "right";
         } else {
-            newCell.textContent = "";
+            // Add input element
+            let input = document.createElement("input");
+            input.classList.add("input-content");
+            input.type = "text";
+            input.name = `calendar[${i}][${v-1}]`;
+            input.value = "";
+
+            // Load old data if exists
+            if (oldData[i] && oldData[i][v-1]) {
+                input.value = oldData[i][v-1];
+            }
+
+            newCell.appendChild(input);
 
             // pointer leave & enter listeners
             newCell.addEventListener('pointerenter', () => {
