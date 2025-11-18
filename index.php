@@ -9,14 +9,9 @@ if (file_exists($dataFile)) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['calendar'])) {
-
     $calendar = $_POST['calendar'];
-
     // Save to file
     file_put_contents('savedata.txt', json_encode($calendar));
-
-    // Redirect to same page to reload latest data
-    header("Location: " . $_SERVER['PHP_SELF']);
     exit;
 }
 ?>
@@ -32,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['calendar'])) {
 <body>
     <h3 id="ccc" class="title">Calendar</h3>
 
-    <form method="post">
+    <form id="calendar_form" method="post">
 
         <table id="calendar">
             <thead>
@@ -52,14 +47,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['calendar'])) {
             </tbody>
         </table>
 
-        <button type="submit" id="save_button" name="save"><b>Save Data</b></button>
+        <button type="button" id="save_button" name="save"><b>Save Data</b></button>
 
     </form>
+
+    <div id="calendar_output"></div> <!-- place to show save message -->
 
     <script>
         // save old data to javascript variable
         const oldData = <?php echo json_encode($tableData); ?>;
     </script>
+
+    <script src="jquery-3.7.1.min.js"></script>
     <script src="cal.js"></script>
 </body>
 

@@ -63,12 +63,12 @@ for (let i = 0; i < 24; i++) {
             let input = document.createElement("input");
             input.classList.add("input-content");
             input.type = "text";
-            input.name = `calendar[${i}][${v-1}]`;
+            input.name = `calendar[${i}][${v - 1}]`;
             input.value = "";
 
             // Load old data if exists
-            if (oldData[i] && oldData[i][v-1]) {
-                input.value = oldData[i][v-1];
+            if (oldData[i] && oldData[i][v - 1]) {
+                input.value = oldData[i][v - 1];
             }
 
             newCell.appendChild(input);
@@ -85,6 +85,18 @@ for (let i = 0; i < 24; i++) {
         }
     }
 }
+
+$('#save_button').on('click', function (e) {
+    e.preventDefault();
+
+    $.post('index.php', $('#calendar_form').serialize(),
+        function (data, status) {
+            $('#calendar_output').text(data);
+        }
+    ).fail(function () {
+        $('#calendar_output').text('Error saving calendar data.');
+    });
+});
 
 // set mode to view
 switch_mode();
